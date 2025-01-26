@@ -13,6 +13,7 @@ meta$response=as.factor(meta$response)
 fit_adjust_batch <- adjust_batch(feature_abd = abd,
                                  batch = "study_id",   # batch_size的修改条件
                                  data = meta,
+                                 covariates='response'
                                  control = list(verbose = FALSE))
 
 #CRC_abd_adj <- fit_adjust_batch$feature_abd_adj
@@ -25,6 +26,7 @@ fit_lm_meta <- lm_meta(feature_abd = CRC_abd_adj,
                        batch = "study_id",
                        exposure = "response",
                        data = meta,
+                       covariates=c('age','BMI','sex')
                        control = list(verbose = FALSE))
 
 meta_fits <- fit_lm_meta$meta_fits
